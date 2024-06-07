@@ -3419,18 +3419,109 @@ F-statistic:  20.9 on 6 and 93 DF,  p-value: 2.237e-15</code></pre>
 <pre><code>Peso promedio esperado para la raza A: 2767.018 gramos</code></pre>
 </div>
 </div>
+<p>El modelo ajustado sugiere que bajo las condiciones especificadas, la raza A produce un peso promedio mayor en comparación con la raza B.</p>
 <p><br></p>
 </section>
 <section id="pregunta-3" class="level2">
 <h2 class="anchored" data-anchor-id="pregunta-3">Pregunta 3</h2>
 <p>Determine si el modelo es o no válido para predecir. Calcule <span class="math inline">\(E[y|\mathbf{x}_0]\)</span> donde <span class="math inline">\(\mathbf{x}_0 = (28, 65, 70,\)</span> <code>A</code> <span class="math inline">\(,1)\)</span>. Recomendaría el engorde de los pollos en estas condiciones para aumentar la eficiencia? Si la pechuga, los dos perniles y las alas representan el 40%, 30% y 15% del peso del pollo, respectivamente, cuál es el precio de venta promedio de un pollo engordado en estas condiciones? Suponga que <span class="math inline">\(p_1=0.1\)</span>, <span class="math inline">\(p_2=0.3\)</span>, <span class="math inline">\(p_3=0.45\)</span> y <span class="math inline">\(p_4=0.15\)</span>.</p>
-<p><code>Respuesta</code>. <em>Aquí escribe su respuesta. Por favor incluya el código <code>R</code> utilizado, si aplica</em>.</p>
+</section>
+<section id="predicción" class="level2">
+<h2 class="anchored" data-anchor-id="predicción">Predicción</h2>
+<p>Basado en el <span class="math inline">\(R^2=0.5468\)</span> el modelo es relativamente bueno, por otro lado, gran parte de los coeficientes de las variables explicativas son significativos.</p>
+</section>
+<section id="calculo-eymathbfx_0" class="level2">
+<h2 class="anchored" data-anchor-id="calculo-eymathbfx_0">Calculo <span class="math inline">\(E[y|\mathbf{x}_0]\)</span></h2>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Condiciones especificadas</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x1_0 <span class="ot">&lt;-</span> <span class="dv">28</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>x2_0 <span class="ot">&lt;-</span> <span class="dv">65</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>x3_0 <span class="ot">&lt;-</span> <span class="dv">70</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>x4_0 <span class="ot">&lt;-</span> <span class="dv">0</span> <span class="co"># Raza A</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>x5_0 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="co"># </span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el peso promedio esperado para las condiciones especificadas</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>peso_esperado_x0 <span class="ot">&lt;-</span> coeficientes[<span class="dv">1</span>] <span class="sc">+</span> coeficientes[<span class="dv">2</span>] <span class="sc">*</span> x1_0 <span class="sc">+</span> coeficientes[<span class="dv">3</span>] <span class="sc">*</span> x2_0 <span class="sc">+</span> coeficientes[<span class="dv">4</span>] <span class="sc">*</span> x3_0 <span class="sc">+</span> coeficientes[<span class="dv">7</span>] <span class="sc">*</span> x5_0</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Peso promedio esperado para las condiciones especificadas:&quot;</span>, peso_esperado_x0, <span class="st">&quot;gramos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Peso promedio esperado para las condiciones especificadas: 2853.538 gramos</code></pre>
+</div>
+</div>
+<p>Teniendo en cuenta que el peso medio de los pollos esta entre (2400, 2800) con un grado de confianza del 95%, podemos concluir que las condiciones propuestas es posible aumentar la eficiencia en terminos de peso (engorde de los pollos).</p>
+<p>Recomendaría el engorde de los pollos en estas condiciones para aumentar la eficiencia de la planta.</p>
+</section>
+<section id="precio-de-venta" class="level2">
+<h2 class="anchored" data-anchor-id="precio-de-venta">Precio de venta</h2>
+<p>Partiendo desde el precio del pollo por libras y lo que representa segun su procedencia, tenemos:</p>
+<ul>
+<li><p>Pechuga: $4.300 40%</p></li>
+<li><p>Dos perniles: $3.400 30%</p></li>
+<li><p>Alas: $2.900 15%</p></li>
+</ul>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>lbxgr<span class="ot">&lt;-</span><span class="fl">453.59237</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Precios por libra</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>precio_pollo_lb<span class="ot">&lt;-</span><span class="dv">8000</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>precio_pechuga_lb <span class="ot">&lt;-</span> <span class="dv">4300</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>precio_perniles_lb <span class="ot">&lt;-</span> <span class="dv">3400</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>precio_alas_lb <span class="ot">&lt;-</span> <span class="dv">2900</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesos en gramos</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>peso_pollo <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">*</span> peso_esperado_x0</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>peso_pechuga <span class="ot">&lt;-</span> <span class="fl">0.40</span> <span class="sc">*</span> peso_esperado_x0</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>peso_perniles <span class="ot">&lt;-</span> <span class="fl">0.30</span> <span class="sc">*</span> peso_esperado_x0</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>peso_alas <span class="ot">&lt;-</span> <span class="fl">0.15</span> <span class="sc">*</span> peso_esperado_x0</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Pesos en libras</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>peso_pechuga_lb <span class="ot">&lt;-</span> peso_pechuga <span class="sc">/</span> lbxgr</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>peso_perniles_lb <span class="ot">&lt;-</span> peso_perniles <span class="sc">/</span> lbxgr</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>peso_alas_lb <span class="ot">&lt;-</span> peso_alas <span class="sc">/</span> lbxgr</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Precio total de cada parte</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>precio_pechuga <span class="ot">&lt;-</span> peso_pechuga_lb <span class="sc">*</span> precio_pechuga_lb</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>precio_perniles <span class="ot">&lt;-</span> peso_perniles_lb <span class="sc">*</span> precio_perniles_lb <span class="sc">*</span> <span class="dv">2</span> <span class="co"># dos perniles</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>precio_alas <span class="ot">&lt;-</span> peso_alas_lb <span class="sc">*</span> precio_alas_lb</span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Precio promedio por pollo</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>precio_total <span class="ot">&lt;-</span> precio_pechuga <span class="sc">+</span> precio_perniles <span class="sc">+</span> precio_alas</span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Precio promedio de un pollo engordado en estas condiciones:&quot;</span>, precio_total, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Precio promedio de un pollo engordado en estas condiciones: 26390.64 </code></pre>
+</div>
+</div>
 <p><br></p>
 </section>
 <section id="pregunta-4" class="level2">
 <h2 class="anchored" data-anchor-id="pregunta-4">Pregunta 4</h2>
 <p>A cuánto ascienden las ventas de los <strong>4 tipos de producto</strong> al utilizar estas condiciones de engorde? Si los gastos operacionales ascienden a $5,000,000 mensuales/galpón, <em>aproxime</em> la utilidad.</p>
-<p><code>Respuesta</code>. <em>Aquí escribe su respuesta. Por favor incluya el código <code>R</code> utilizado, si aplica</em>.</p>
+</section>
+<section id="precio-promedio-de-venta" class="level2">
+<h2 class="anchored" data-anchor-id="precio-promedio-de-venta">Precio promedio de venta</h2>
+<p>El precio promedio de venta de cada producto, por libra es:</p>
+<ul>
+<li><p>Pollo entero: $8.000</p></li>
+<li><p>Pechuga: $4.300</p></li>
+<li><p>Dos perniles: $3.400</p></li>
+<li><p>Alas: $2.900</p></li>
+</ul>
+<p>La produccion total es de 8 pollos por metro cuadrado y son 200 galpones que miden 14m x 140m.</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>produccion_pollos<span class="ot">&lt;-</span>(<span class="dv">200</span><span class="sc">*</span>(<span class="dv">14</span><span class="sc">*</span><span class="dv">140</span>))<span class="sc">*</span><span class="dv">8</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;La produccion de pollos por es es:&quot;</span>, produccion_pollos, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>La produccion de pollos por es es: 3136000 </code></pre>
+</div>
+</div>
 </section>
 
 

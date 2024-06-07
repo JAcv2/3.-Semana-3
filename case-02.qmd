@@ -138,6 +138,7 @@ peso_esperado_A <- coeficientes[1] + coeficientes[2] * x1 + coeficientes[3] * x2
 cat("Peso promedio esperado para la raza A:", peso_esperado_A, "gramos\n")
 
 ```
+El modelo ajustado sugiere que bajo las condiciones especificadas, la raza A produce un peso promedio mayor en comparación con la raza B.
 
 <br>
 
@@ -146,8 +147,68 @@ cat("Peso promedio esperado para la raza A:", peso_esperado_A, "gramos\n")
 Determine si el modelo es o no válido para predecir. Calcule $E[y|\mathbf{x}_0]$ donde $\mathbf{x}_0 = (28, 65, 70,$ `A` $,1)$. Recomendaría el engorde de los pollos en estas condiciones para aumentar la eficiencia? Si la pechuga, los dos perniles y las alas representan el 40%, 30% y 15% del peso del pollo, respectivamente, cuál es el precio de venta promedio de un pollo engordado en estas condiciones?  Suponga que $p_1=0.1$, $p_2=0.3$, $p_3=0.45$ y $p_4=0.15$. 
 
 
-`Respuesta`. _Aquí escribe su respuesta. Por favor incluya el código `R` utilizado, si aplica_.
+## Predicción
 
+Basado en el $R^2=0.5468$ el modelo es relativamente bueno, por otro lado, gran parte de los coeficientes de las variables explicativas son significativos.
+
+## Calculo $E[y|\mathbf{x}_0]$
+
+```{r}
+# Condiciones especificadas
+x1_0 <- 28
+x2_0 <- 65
+x3_0 <- 70
+x4_0 <- 0 # Raza A
+x5_0 <- 1 # 
+
+# Calcular el peso promedio esperado para las condiciones especificadas
+peso_esperado_x0 <- coeficientes[1] + coeficientes[2] * x1_0 + coeficientes[3] * x2_0 + coeficientes[4] * x3_0 + coeficientes[7] * x5_0
+cat("Peso promedio esperado para las condiciones especificadas:", peso_esperado_x0, "gramos\n")
+```
+Teniendo en cuenta que el peso medio de los pollos esta entre (2400, 2800) con un grado de confianza del 95%, podemos concluir que las condiciones propuestas es posible aumentar la eficiencia en terminos de peso (engorde de los pollos).
+
+Recomendaría el engorde de los pollos en estas condiciones para aumentar la eficiencia de la planta.
+
+## Precio de venta 
+
+Partiendo desde el precio del pollo por libras y lo que representa segun su procedencia, tenemos:
+
+- Pechuga: $4.300 40%
+
+- Dos perniles: $3.400 30%
+
+- Alas: $2.900 15%
+
+```{r}
+
+lbxgr<-453.59237
+
+# Precios por libra
+precio_pollo_lb<-8000
+precio_pechuga_lb <- 4300
+precio_perniles_lb <- 3400
+precio_alas_lb <- 2900
+
+# Pesos en gramos
+peso_pollo <- 1 * peso_esperado_x0
+peso_pechuga <- 0.40 * peso_esperado_x0
+peso_perniles <- 0.30 * peso_esperado_x0
+peso_alas <- 0.15 * peso_esperado_x0
+
+# Pesos en libras
+peso_pechuga_lb <- peso_pechuga / lbxgr
+peso_perniles_lb <- peso_perniles / lbxgr
+peso_alas_lb <- peso_alas / lbxgr
+
+# Precio total de cada parte
+precio_pechuga <- peso_pechuga_lb * precio_pechuga_lb
+precio_perniles <- peso_perniles_lb * precio_perniles_lb * 2 # dos perniles
+precio_alas <- peso_alas_lb * precio_alas_lb
+
+# Precio promedio por pollo
+precio_total <- precio_pechuga + precio_perniles + precio_alas
+cat("Precio promedio de un pollo engordado en estas condiciones:", precio_total, "\n")
+```
 
 <br>
 
@@ -155,4 +216,24 @@ Determine si el modelo es o no válido para predecir. Calcule $E[y|\mathbf{x}_0]
 
 A cuánto ascienden las ventas de los **4 tipos de producto** al utilizar estas condiciones de engorde?  Si los gastos operacionales ascienden a \$5,000,000 mensuales/galpón, _aproxime_ la utilidad.
 
-`Respuesta`. _Aquí escribe su respuesta. Por favor incluya el código `R` utilizado, si aplica_.
+
+## Precio promedio de venta
+
+El precio promedio de venta de cada producto, por libra es:
+
+- Pollo entero: $8.000 
+
+- Pechuga: $4.300
+
+- Dos perniles: $3.400
+
+- Alas: $2.900
+
+La produccion total es de 8 pollos por metro cuadrado y son 200 galpones que miden 14m x 140m.
+
+```{r}
+produccion_pollos<-(200*(14*140))*8
+cat("La produccion de pollos por es es:", produccion_pollos, "\n")
+```
+
+
