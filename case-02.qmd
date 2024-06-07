@@ -58,12 +58,6 @@ Forraje en gramos por día ($x_3$).
 Raza ($x_4$) con niveles A, B, y C.
 Exposición a luz especial durante la noche ($x_5$) con niveles 0 (No) y 1 (Sí).
 
-```{r}
-# Calcular el peso promedio
-peso_promedio <- mean(x$y)
-cat("Peso promedio:", peso_promedio, "gramos\n")
-```
-
 ## Area del galpon
 
 El galpon tiene una area de 14m x 140m y se cuenta con 200 galpones
@@ -78,21 +72,19 @@ cat("Capacidad total:", total_pollos, "pollos\n")
 
 ## Peso promedio de los pollos
 
-El peso promedio actual es entre 2400 y 2800 gramos
+El peso promedio de un pollo esta en el intervalo (2400, 2800) gramos, con una confianza del 95%.
 
 ```{r}
-peso_promedio_actual<-(2400+2800)/2
-cat("El peso promedio actual de los pollos es:", peso_promedio_actual, "gramos\n")
+# Calcular el peso promedio
+peso_promedio <- mean(x$y)
+cat("Peso promedio:", peso_promedio, "gramos\n")
 ```
 ## Peso total de los pollos
 
 ```{r}
-peso_total <- total_pollos * peso_promedio_actual / 1000 # en kilogramos
+peso_total <- total_pollos * peso_promedio / 1000 # en kilogramos
 cat("Peso total promedio alcanzado en las condiciones actuales:", peso_total, "kg\n")
 ```
-
-
-
 
 <br>
 
@@ -100,7 +92,52 @@ cat("Peso total promedio alcanzado en las condiciones actuales:", peso_total, "k
 
 Ajuste un modelo de RLM. Podemos decir que el modelo es _bueno_ para explicar el peso promedio del grupo de 100 pollos? Si tuviera que recomendar una raza en particular, cuál sería y por qué?  Es posible hablar de uniformidad en el peso, independiente de la raza? Escriba el modelo para la raza `B` y determine el peso promedio esperado cuando $x_1 = 20$, $x_2 = 60$ y $x_3 = 60$, y los animales **no se exponen** a la luz.  Calcule el peso promedio para la raza `A` en las mismas condiciones.
 
-`Respuesta`. _Aquí escribe su respuesta. Por favor incluya el código `R` utilizado, si aplica_.
+## Modelo RLM
+
+```{r}
+# Convertir las variables categóricas a factores
+x$x4 <- as.factor(x$x4)
+x$x5 <- as.factor(x$x5)
+# Ajustar el modelo de regresión lineal múltiple
+modelo_rlm <- lm(y ~ x1 + x2 + x3 + x4 + x5, data = x)
+# Resumen del modelo
+summary(modelo_rlm)
+```
+## Bondad del modelo
+
+El $R^2_{ajustado}=0.5465$, indica que aproximadamente el 54.65% de la variabilidad del peso medio de los pollos es explicado por las variables del modelo.
+
+## Coeficientes
+
+La variable Nutrientes $x_{1}$ tiene un coeficiente de $2.0990$ y un $p-valor =2e-16$, por lo tanto no es significativo.
+
+La variable Agua $x_{2}$ tiene un coeficiente de $4.1656$ y un $p-valor =4.51e-06$, por lo tanto no significativo.
+
+La variable Forraje $x_{3}$ tiene un coeficiente de $-2.5947$ y un $p-valor =2.12e-06$, por lo tanto es significativo.
+
+
+## Modelo para la raza B
+
+```{r}
+# Coeficientes del modelo
+#coeficientes <- c("(Intercept)" = 2630.7862, "x1" = 2.0990, "x2" = 4.1656, "x3" = -2.5947, "x4B" = -86.5364, "x4C" = -10.0919, "x51" = 74.8475)
+coeficientes<-modelo_rlm$coefficients
+
+# Condiciones especificadas
+x1 <- 20
+x2 <- 60
+x3 <- 60
+x5 <- 0
+
+# Calcular el peso promedio para la raza B
+peso_esperado_B <- coeficientes[1] + coeficientes[2] * x1 + coeficientes[3] * x2 + coeficientes[4] * x3 + coeficientes[5] + coeficientes[6] * x5
+cat("Peso promedio esperado para la raza B:", peso_esperado_B, "gramos\n")
+
+# Calcular el peso promedio para la raza A
+peso_esperado_A <- coeficientes[1] + coeficientes[2] * x1 + coeficientes[3] * x2 + coeficientes[4] * x3 + coeficientes[5] * x5
+cat("Peso promedio esperado para la raza A:", peso_esperado_A, "gramos\n")
+
+```
 
 <br>
 
