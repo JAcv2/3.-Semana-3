@@ -3287,17 +3287,6 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="pregunta-1">Pregunta 1</h2>
 <p>Esquematice cómo tomaría los datos necesarios para apoyar la toma de decisiones de PRR y cómo los organizaría en un archivo. Cuál es la unidad experimental? Si en la actualidad PRR dispone de 200 <a href="https://i0.wp.com/actualidadavipecuaria.com/wp-content/uploads/2020/06/Avicultura-en-altura-11.jpg?fit=1200%2C675&amp;ssl=1">galpones</a> de <span class="math inline">\(14m\)</span> de ancho por <span class="math inline">\(140m\)</span> de largo en los que pueden albergar <em>hasta</em> 8 pollos por <span class="math inline">\(m^2\)</span>, determine el peso total promedio alcanzado al final de la etapa de engorde en las condiciones <em>actuales</em>.</p>
 <p>Se seleccionan 100 grupos de 100 pollos cada uno. Se registran las siguientes variables: Peso promedio final (<span class="math inline">\(Y\)</span>) en gramos. Nutrientes en gramos por día (<span class="math inline">\(x_1\)</span>). Agua en ml por día (<span class="math inline">\(x_2\)</span>). Forraje en gramos por día (<span class="math inline">\(x_3\)</span>). Raza (<span class="math inline">\(x_4\)</span>) con niveles A, B, y C. Exposición a luz especial durante la noche (<span class="math inline">\(x_5\)</span>) con niveles 0 (No) y 1 (Sí).</p>
-<div class="cell">
-<details open class="code-fold">
-<summary>Código</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el peso promedio</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>peso_promedio <span class="ot">&lt;-</span> <span class="fu">mean</span>(x<span class="sc">$</span>y)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Peso promedio:&quot;</span>, peso_promedio, <span class="st">&quot;gramos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output cell-output-stdout">
-<pre><code>Peso promedio: 2770.89 gramos</code></pre>
-</div>
-</div>
 </section>
 <section id="area-del-galpon" class="level2">
 <h2 class="anchored" data-anchor-id="area-del-galpon">Area del galpon</h2>
@@ -3305,10 +3294,10 @@ window.Quarto = {
 <div class="cell">
 <details open class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el peso total promedio alcanzado en las condiciones actuales</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>pollos_por_galpon <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">*</span> <span class="dv">14</span> <span class="sc">*</span> <span class="dv">140</span> <span class="co"># 8 pollos por galpon por el area del galpon (14 m * 140m)</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>total_pollos <span class="ot">&lt;-</span> pollos_por_galpon <span class="sc">*</span> <span class="dv">200</span> <span class="co"># PRR dispone de 200 galpones</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Capacidad total:&quot;</span>, total_pollos, <span class="st">&quot;pollos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el peso total promedio alcanzado en las condiciones actuales</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pollos_por_galpon <span class="ot">&lt;-</span> <span class="dv">8</span> <span class="sc">*</span> <span class="dv">14</span> <span class="sc">*</span> <span class="dv">140</span> <span class="co"># 8 pollos por galpon por el area del galpon (14 m * 140m)</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>total_pollos <span class="ot">&lt;-</span> pollos_por_galpon <span class="sc">*</span> <span class="dv">200</span> <span class="co"># PRR dispone de 200 galpones</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Capacidad total:&quot;</span>, total_pollos, <span class="st">&quot;pollos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Capacidad total: 3136000 pollos</code></pre>
@@ -3317,15 +3306,16 @@ window.Quarto = {
 </section>
 <section id="peso-promedio-de-los-pollos" class="level2">
 <h2 class="anchored" data-anchor-id="peso-promedio-de-los-pollos">Peso promedio de los pollos</h2>
-<p>El peso promedio actual es entre 2400 y 2800 gramos</p>
+<p>El peso promedio de un pollo esta en el intervalo (2400, 2800) gramos, con una confianza del 95%.</p>
 <div class="cell">
 <details open class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>peso_promedio_actual<span class="ot">&lt;-</span>(<span class="dv">2400</span><span class="sc">+</span><span class="dv">2800</span>)<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;El peso promedio actual de los pollos es:&quot;</span>, peso_promedio_actual, <span class="st">&quot;gramos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el peso promedio</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>peso_promedio <span class="ot">&lt;-</span> <span class="fu">mean</span>(x<span class="sc">$</span>y)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Peso promedio:&quot;</span>, peso_promedio, <span class="st">&quot;gramos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>El peso promedio actual de los pollos es: 2600 gramos</code></pre>
+<pre><code>Peso promedio: 2770.89 gramos</code></pre>
 </div>
 </div>
 </section>
@@ -3334,11 +3324,11 @@ window.Quarto = {
 <div class="cell">
 <details open class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>peso_total <span class="ot">&lt;-</span> total_pollos <span class="sc">*</span> peso_promedio_actual <span class="sc">/</span> <span class="dv">1000</span> <span class="co"># en kilogramos</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Peso total promedio alcanzado en las condiciones actuales:&quot;</span>, peso_total, <span class="st">&quot;kg</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>peso_total <span class="ot">&lt;-</span> total_pollos <span class="sc">*</span> peso_promedio <span class="sc">/</span> <span class="dv">1000</span> <span class="co"># en kilogramos</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Peso total promedio alcanzado en las condiciones actuales:&quot;</span>, peso_total, <span class="st">&quot;kg</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>Peso total promedio alcanzado en las condiciones actuales: 8153600 kg</code></pre>
+<pre><code>Peso total promedio alcanzado en las condiciones actuales: 8689511 kg</code></pre>
 </div>
 </div>
 <p><br></p>
@@ -3346,7 +3336,89 @@ window.Quarto = {
 <section id="pregunta-2" class="level2">
 <h2 class="anchored" data-anchor-id="pregunta-2">Pregunta 2</h2>
 <p>Ajuste un modelo de RLM. Podemos decir que el modelo es <em>bueno</em> para explicar el peso promedio del grupo de 100 pollos? Si tuviera que recomendar una raza en particular, cuál sería y por qué? Es posible hablar de uniformidad en el peso, independiente de la raza? Escriba el modelo para la raza <code>B</code> y determine el peso promedio esperado cuando <span class="math inline">\(x_1 = 20\)</span>, <span class="math inline">\(x_2 = 60\)</span> y <span class="math inline">\(x_3 = 60\)</span>, y los animales <strong>no se exponen</strong> a la luz. Calcule el peso promedio para la raza <code>A</code> en las mismas condiciones.</p>
-<p><code>Respuesta</code>. <em>Aquí escribe su respuesta. Por favor incluya el código <code>R</code> utilizado, si aplica</em>.</p>
+</section>
+<section id="modelo-rlm" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-rlm">Modelo RLM</h2>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir las variables categóricas a factores</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>x4 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x<span class="sc">$</span>x4)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>x5 <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x<span class="sc">$</span>x5)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar el modelo de regresión lineal múltiple</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>modelo_rlm <span class="ot">&lt;-</span> <span class="fu">lm</span>(y <span class="sc">~</span> x1 <span class="sc">+</span> x2 <span class="sc">+</span> x3 <span class="sc">+</span> x4 <span class="sc">+</span> x5, <span class="at">data =</span> x)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo_rlm)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = y ~ x1 + x2 + x3 + x4 + x5, data = x)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-222.022  -51.849    7.082   57.180  187.069 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 2630.7862    68.4619  38.427  &lt; 2e-16 ***
+x1             2.0990     1.2563   1.671 0.098135 .  
+x2             4.1656     0.8549   4.873 4.51e-06 ***
+x3            -2.5947     0.5130  -5.058 2.12e-06 ***
+x4B          -86.5364    21.6830  -3.991 0.000131 ***
+x4C          -10.0919    22.2276  -0.454 0.650868    
+x51           74.8475    17.8246   4.199 6.13e-05 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 84.65 on 93 degrees of freedom
+Multiple R-squared:  0.5742,    Adjusted R-squared:  0.5468 
+F-statistic:  20.9 on 6 and 93 DF,  p-value: 2.237e-15</code></pre>
+</div>
+</div>
+</section>
+<section id="bondad-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="bondad-del-modelo">Bondad del modelo</h2>
+<p>El <span class="math inline">\(R^2_{ajustado}=0.5465\)</span>, indica que aproximadamente el 54.65% de la variabilidad del peso medio de los pollos es explicado por las variables del modelo.</p>
+</section>
+<section id="coeficientes" class="level2">
+<h2 class="anchored" data-anchor-id="coeficientes">Coeficientes</h2>
+<p>La variable Nutrientes <span class="math inline">\(x_{1}\)</span> tiene un coeficiente de <span class="math inline">\(2.0990\)</span> y un <span class="math inline">\(p-valor =2e-16\)</span>, por lo tanto no es significativo.</p>
+<p>La variable Agua <span class="math inline">\(x_{2}\)</span> tiene un coeficiente de <span class="math inline">\(4.1656\)</span> y un <span class="math inline">\(p-valor =4.51e-06\)</span>, por lo tanto no significativo.</p>
+<p>La variable Forraje <span class="math inline">\(x_{3}\)</span> tiene un coeficiente de <span class="math inline">\(-2.5947\)</span> y un <span class="math inline">\(p-valor =2.12e-06\)</span>, por lo tanto es significativo.</p>
+</section>
+<section id="modelo-para-la-raza-b" class="level2">
+<h2 class="anchored" data-anchor-id="modelo-para-la-raza-b">Modelo para la raza B</h2>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Coeficientes del modelo</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#coeficientes &lt;- c(&quot;(Intercept)&quot; = 2630.7862, &quot;x1&quot; = 2.0990, &quot;x2&quot; = 4.1656, &quot;x3&quot; = -2.5947, &quot;x4B&quot; = -86.5364, &quot;x4C&quot; = -10.0919, &quot;x51&quot; = 74.8475)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>coeficientes<span class="ot">&lt;-</span>modelo_rlm<span class="sc">$</span>coefficients</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Condiciones especificadas</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> <span class="dv">60</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>x5 <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el peso promedio para la raza B</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>peso_esperado_B <span class="ot">&lt;-</span> coeficientes[<span class="dv">1</span>] <span class="sc">+</span> coeficientes[<span class="dv">2</span>] <span class="sc">*</span> x1 <span class="sc">+</span> coeficientes[<span class="dv">3</span>] <span class="sc">*</span> x2 <span class="sc">+</span> coeficientes[<span class="dv">4</span>] <span class="sc">*</span> x3 <span class="sc">+</span> coeficientes[<span class="dv">5</span>] <span class="sc">+</span> coeficientes[<span class="dv">6</span>] <span class="sc">*</span> x5</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Peso promedio esperado para la raza B:&quot;</span>, peso_esperado_B, <span class="st">&quot;gramos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Peso promedio esperado para la raza B: 2680.482 gramos</code></pre>
+</div>
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular el peso promedio para la raza A</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>peso_esperado_A <span class="ot">&lt;-</span> coeficientes[<span class="dv">1</span>] <span class="sc">+</span> coeficientes[<span class="dv">2</span>] <span class="sc">*</span> x1 <span class="sc">+</span> coeficientes[<span class="dv">3</span>] <span class="sc">*</span> x2 <span class="sc">+</span> coeficientes[<span class="dv">4</span>] <span class="sc">*</span> x3 <span class="sc">+</span> coeficientes[<span class="dv">5</span>] <span class="sc">*</span> x5</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;Peso promedio esperado para la raza A:&quot;</span>, peso_esperado_A, <span class="st">&quot;gramos</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Peso promedio esperado para la raza A: 2767.018 gramos</code></pre>
+</div>
+</div>
 <p><br></p>
 </section>
 <section id="pregunta-3" class="level2">
