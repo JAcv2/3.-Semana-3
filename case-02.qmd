@@ -232,8 +232,45 @@ El precio promedio de venta de cada producto, por libra es:
 La produccion total es de 8 pollos por metro cuadrado y son 200 galpones que miden 14m x 140m.
 
 ```{r}
-produccion_pollos<-(200*(14*140))*8
-cat("La produccion de pollos por es es:", produccion_pollos, "\n")
+prod_pollos<-(200*(14*140))*8
+cat("La produccion de pollos por es:", prod_pollos, "\n")
+```
+Peso medio en libras
+
+```{r}
+peso_esperado_x0_lbs <- peso_esperado_x0 / 453.592
+cat("El peso medio en libras de los pollos es:", peso_esperado_x0_lbs, "\n")
+```
+Peso de los pollos en libras
+
+```{r}
+peso_total_prod_pollos <-prod_pollos*peso_esperado_x0_lbs
+cat("El peso total en libras de los pollos es:", peso_total_prod_pollos,"Lbs", "\n")
+```
+Distribucion del peso por tipo de producto
+
+```{r}
+# Datos de entrada
+precio_entero = 8000
+precio_pechuga = 4300
+precio_pernil = 3400
+precio_alas = 2900
+
+p_1<-0.1  # (i) pollo entero
+p_2<-0.3  # (ii) bandejas de pechuga entera
+p_3<-0.45 # (iii) bandejas de permil
+p_4<-0.15 # (iv) bandeja de alas
+
+# Calcular las ventas por tipo de producto
+ventas_entero <- peso_total_prod_pollos * p_1 * precio_entero
+ventas_pechuga <- peso_total_prod_pollos * p_2 * precio_pechuga
+ventas_pernil <- peso_total_prod_pollos * p_3 * precio_pernil
+ventas_alas <- peso_total_prod_pollos * p_4 * precio_alas
+ventas_total <- ventas_entero + ventas_pechuga + ventas_pernil + ventas_alas
+operacionx30 <- 5000000
+operaciox40 <- (operacionx30/30)*40
+utl <- ventas_total - operaciox40
+utl
 ```
 
 

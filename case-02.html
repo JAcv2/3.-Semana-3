@@ -3515,11 +3515,64 @@ F-statistic:  20.9 on 6 and 93 DF,  p-value: 2.237e-15</code></pre>
 <div class="cell">
 <details open class="code-fold">
 <summary>Código</summary>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>produccion_pollos<span class="ot">&lt;-</span>(<span class="dv">200</span><span class="sc">*</span>(<span class="dv">14</span><span class="sc">*</span><span class="dv">140</span>))<span class="sc">*</span><span class="dv">8</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;La produccion de pollos por es es:&quot;</span>, produccion_pollos, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>prod_pollos<span class="ot">&lt;-</span>(<span class="dv">200</span><span class="sc">*</span>(<span class="dv">14</span><span class="sc">*</span><span class="dv">140</span>))<span class="sc">*</span><span class="dv">8</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;La produccion de pollos por es:&quot;</span>, prod_pollos, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>La produccion de pollos por es es: 3136000 </code></pre>
+<pre><code>La produccion de pollos por es: 3136000 </code></pre>
+</div>
+</div>
+<p>Peso medio en libras</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>peso_esperado_x0_lbs <span class="ot">&lt;-</span> peso_esperado_x0 <span class="sc">/</span> <span class="fl">453.592</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;El peso medio en libras de los pollos es:&quot;</span>, peso_esperado_x0_lbs, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El peso medio en libras de los pollos es: 6.290981 </code></pre>
+</div>
+</div>
+<p>Peso de los pollos en libras</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>peso_total_prod_pollos <span class="ot">&lt;-</span>prod_pollos<span class="sc">*</span>peso_esperado_x0_lbs</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">&quot;El peso total en libras de los pollos es:&quot;</span>, peso_total_prod_pollos,<span class="st">&quot;Lbs&quot;</span>, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>El peso total en libras de los pollos es: 19728515 Lbs </code></pre>
+</div>
+</div>
+<p>Distribucion del peso por tipo de producto</p>
+<div class="cell">
+<details open class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datos de entrada</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>precio_entero <span class="ot">=</span> <span class="dv">8000</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>precio_pechuga <span class="ot">=</span> <span class="dv">4300</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>precio_pernil <span class="ot">=</span> <span class="dv">3400</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>precio_alas <span class="ot">=</span> <span class="dv">2900</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>p_1<span class="ot">&lt;-</span><span class="fl">0.1</span>  <span class="co"># (i) pollo entero</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>p_2<span class="ot">&lt;-</span><span class="fl">0.3</span>  <span class="co"># (ii) bandejas de pechuga entera</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>p_3<span class="ot">&lt;-</span><span class="fl">0.45</span> <span class="co"># (iii) bandejas de permil</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>p_4<span class="ot">&lt;-</span><span class="fl">0.15</span> <span class="co"># (iv) bandeja de alas</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular las ventas por tipo de producto</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>ventas_entero <span class="ot">&lt;-</span> peso_total_prod_pollos <span class="sc">*</span> p_1 <span class="sc">*</span> precio_entero</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>ventas_pechuga <span class="ot">&lt;-</span> peso_total_prod_pollos <span class="sc">*</span> p_2 <span class="sc">*</span> precio_pechuga</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>ventas_pernil <span class="ot">&lt;-</span> peso_total_prod_pollos <span class="sc">*</span> p_3 <span class="sc">*</span> precio_pernil</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>ventas_alas <span class="ot">&lt;-</span> peso_total_prod_pollos <span class="sc">*</span> p_4 <span class="sc">*</span> precio_alas</span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>ventas_total <span class="ot">&lt;-</span> ventas_entero <span class="sc">+</span> ventas_pechuga <span class="sc">+</span> ventas_pernil <span class="sc">+</span> ventas_alas</span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>operacionx30 <span class="ot">&lt;-</span> <span class="dv">5000000</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>operaciox40 <span class="ot">&lt;-</span> (operacionx30<span class="sc">/</span><span class="dv">30</span>)<span class="sc">*</span><span class="dv">40</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>utl <span class="ot">&lt;-</span> ventas_total <span class="sc">-</span> operaciox40</span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>utl</span></code><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept) 
+79992462915 </code></pre>
 </div>
 </div>
 </section>
